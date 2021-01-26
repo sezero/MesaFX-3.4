@@ -116,7 +116,6 @@ void gl_init_x86_transform_asm( void )
    ASSIGN_XFORM_GROUP( x86, CULL_MASK_ACTIVE, 3, masked );
    ASSIGN_XFORM_GROUP( x86, CULL_MASK_ACTIVE, 4, masked );
 
-   /* XXX this function has been found to cause FP overflow exceptions */
    gl_clip_tab[4] = gl_x86_cliptest_points4;
 
 #ifdef DEBUG

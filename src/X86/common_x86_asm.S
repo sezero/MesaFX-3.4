@@ -59,11 +59,6 @@
 GLNAME( found_intel ):	STRING( "Genuine Intel processor found\n\0" )
 GLNAME( found_amd ):	STRING( "Authentic AMD processor found\n\0" )
 
-#ifdef USE_KATMAI_ASM
-GLNAME( katmai_test_dummy ):
-	D_LONG 0x3f800000, 0x3f800000, 0x3f800000, 0x3f800000
-#endif
-
 
 	SEG_TEXT
 
@@ -72,6 +67,7 @@ GLOBL GLNAME( gl_identify_x86_cpu_features )
 GLNAME( gl_identify_x86_cpu_features ):
 
 	PUSH_L	( EBX )
+	PUSH_L	( ESI )
 
 	/* Test for the CPUID command.  If the ID Flag bit in EFLAGS
 	 * (bit 21) is writable, the CPUID command is present.
@@ -111,6 +107,11 @@ GLNAME( gl_identify_x86_cpu_features ):
 	MOV_L	( CONST(0x1), EAX )
 	CPUID
 	MOV_L	( EDX, EAX )
+
+	/* Mask out highest bit, which is used by AMD for 3dnow
+         * Newer Intel have this bit set, but do not support 3dnow 
+ 	 */
+        AND_L   ( CONST(0X7FFFFFFF), EAX)
 	JMP	( LLBL( cpuid_done ) )
 
 LLBL( cpuid_amd ):
@@ -129,6 +130,15 @@ LLBL( cpuid_amd ):
 	 * information after we verify that the extended functions are
 	 * supported.
 	 */
+	/* The features we need are almost all in the extended set.  The
+	 * exception is SSE enable, which is in the standard set (0x1).
+	 */
+	MOV_L	( CONST(0x1), EAX )
+	CPUID
+	TEST_L	( EAX, EAX )
+	JZ	( LLBL (cpuid_failed) )
+	MOV_L	( EDX, ESI )
+
 	MOV_L	( CONST(0x80000000), EAX )
 	CPUID
 	TEST_L	( EAX, EAX )
@@ -137,6 +147,10 @@ LLBL( cpuid_amd ):
 	MOV_L	( CONST(0x80000001), EAX )
 	CPUID
 	MOV_L	( EDX, EAX )
+	
+	AND_L	( CONST(0x02000000), ESI )	/* OR in the SSE bit */
+	OR_L	( ESI, EAX )
+	
 	JMP	( LLBL ( cpuid_done ) )
 
 LLBL( cpuid_other ):
@@ -154,6 +168,7 @@ LLBL( cpuid_failed ):
 
 LLBL ( cpuid_done ):
 
+	POP_L	( ESI )
 	POP_L	( EBX )
 	RET
 
@@ -197,7 +212,13 @@ GLNAME( gl_test_os_katmai_exception_support ):
 	LDMXCSR	( REGOFF( -8, EBP ) )
 
 	XORPS	( XMM0, XMM0 )
-	MOVUPS	( GLNAME( katmai_test_dummy ), XMM1 )
+
+	PUSH_L	( CONST( 0x3f800000 ) )
+	PUSH_L	( CONST( 0x3f800000 ) )
+	PUSH_L	( CONST( 0x3f800000 ) )
+	PUSH_L	( CONST( 0x3f800000 ) )
+
+	MOVUPS	( REGIND( ESP ), XMM1 )
 
 	DIVPS	( XMM0, XMM1 )
 
