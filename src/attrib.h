@@ -26,7 +26,7 @@
 
 
 #ifndef ATTRIB_H
-#define ATTRIB_h
+#define ATTRIB_H
 
 
 #include "types.h"
