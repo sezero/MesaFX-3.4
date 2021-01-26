@@ -926,8 +926,10 @@ fxMesaContext GLAPIENTRY fxMesaCreateContext(GLuint win,
       return NULL;
    }
 
+#ifndef FX_GLIDE3
    if(type==GR_SSTTYPE_VOODOO)
       win=0;
+#endif
 
    grSstSelect(glbCurrentBoard);
 
