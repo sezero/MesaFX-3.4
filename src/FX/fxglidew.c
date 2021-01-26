@@ -182,6 +182,11 @@ void FX_grGammaCorrectionValue(float val)
 {
   (void)val;
 /* ToDo */
+  #if !defined(XF86DRI) && 0  /* this is not even used */
+   BEGIN_BOARD_LOCK();
+   guGammaCorrectionRGB (val, val, val);
+   END_BOARD_LOCK();
+  #endif
 }
 
 int FX_getFogTableSize(void)
