@@ -111,7 +111,7 @@ GLNAME( gl_identify_x86_cpu_features ):
 	/* Mask out highest bit, which is used by AMD for 3dnow
          * Newer Intel have this bit set, but do not support 3dnow 
  	 */
-        AND_L   ( CONST(0X7FFFFFFF), EAX)
+        AND_L   ( CONST(0x7FFFFFFF), EAX)
 	JMP	( LLBL( cpuid_done ) )
 
 LLBL( cpuid_amd ):
