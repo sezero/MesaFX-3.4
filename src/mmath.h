@@ -239,17 +239,25 @@ do {						\
 #define IEEE_ONE 0x3f7f0000
 #endif
 
+#if defined(__GNUC__) && (__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ > 3))
+typedef GLint  __attribute__((__may_alias__)) __GLint_a;
+typedef GLuint __attribute__((__may_alias__)) __GLuint_a;
+#else
+typedef GLint  __GLint_a;
+typedef GLuint __GLuint_a;
+#endif
+
 #if defined(USE_IEEE) && !defined(DEBUG)
 
 #define CLAMP_FLOAT_COLOR(f)			\
 	do {					\
-	   if (*(GLuint *)&f >= IEEE_ONE)	\
-	      f = (*(GLint *)&f < 0) ? 0 : 1;	\
+	   if (*(__GLuint_a *)&f >= IEEE_ONE)	\
+	      f = (*(__GLint_a *)&f < 0) ? 0 : 1;	\
 	} while(0)
 
 #define CLAMP_FLOAT_COLOR_VALUE(f)		\
-    ( (*(GLuint *)&f >= IEEE_ONE)		\
-      ? ((*(GLint *)&f < 0) ? 0 : 1)		\
+    ( (*(__GLuint_a *)&f >= IEEE_ONE)		\
+      ? ((*(__GLint_a *)&f < 0) ? 0 : 1)		\
       : f )
 
 /* 

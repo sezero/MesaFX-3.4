@@ -702,8 +702,8 @@ _mesa_Indexubv( const GLubyte *c )
    GET_IMMEDIATE;						\
    count = IM->Count;						\
    IM->Flag[count] |= VERT_NORM;				\
-   normal = (GLint *)IM->Normal[count];				\
-   ASSIGN_3V(normal, *(int*)&(x), *(int*)&(y), *(int*)&(z));	\
+   normal = (__GLint_a *)IM->Normal[count];				\
+   ASSIGN_3V(normal, *(__GLint_a*)&(x), *(__GLint_a*)&(y), *(__GLint_a*)&(z));	\
 }
 #else
 #define NORMALF NORMAL
@@ -834,9 +834,9 @@ _mesa_Normal3sv( const GLshort *v )
    GET_IMMEDIATE;				\
    count = IM->Count;				\
    IM->Flag[count] |= VERT_TEX0_12;		\
-   tc = (GLint *)IM->TexCoord[0][count];	\
-   *tc = *(int *)&(s);				\
-   *(tc+1) = *(int *)&(t);			\
+   tc = (__GLint_a *)IM->TexCoord[0][count];	\
+   *tc = *(__GLint_a *)&(s);				\
+   *(tc+1) = *(__GLint_a *)&(t);			\
    *(tc+2) = 0;					\
    *(tc+3) = IEEE_ONE;				\
 }
@@ -1108,13 +1108,13 @@ _mesa_TexCoord4sv( const GLshort *v )
 #define VERTEX3F(IM,x,y,z)			\
 {						\
    GLuint count = IM->Count++;			\
-   GLint *dest = (GLint *)IM->Obj[count];	\
+   __GLint_a *dest = (__GLint_a *)IM->Obj[count];	\
    IM->Flag[count] |= VERT_OBJ_23;		\
-   dest[0] = *(int *)&(x);			\
-   dest[1] = *(int *)&(y);			\
-   dest[2] = *(int *)&(z);			\
+   dest[0] = *(__GLint_a *)&(x);			\
+   dest[1] = *(__GLint_a *)&(y);			\
+   dest[2] = *(__GLint_a *)&(z);			\
    dest[3] = IEEE_ONE;				\
-   if (dest == (GLint *)IM->Obj[VB_MAX-1])	\
+   if (dest == (__GLint_a *)IM->Obj[VB_MAX-1])	\
       IM->maybe_transform_vb( IM );		\
 }
 #else
@@ -1402,9 +1402,9 @@ _mesa_Vertex4sv( const GLshort *v )
    GLint *tc;					\
    count = IM->Count;				\
    IM->Flag[count] |= IM->TF2[texSet];		\
-   tc = (GLint *)IM->TexCoord[texSet][count];	\
-   tc[0] = *(int *)&(s);			\
-   tc[1] = *(int *)&(t);			\
+   tc = (__GLint_a *)IM->TexCoord[texSet][count];	\
+   tc[0] = *(__GLint_a *)&(s);			\
+   tc[1] = *(__GLint_a *)&(t);			\
    tc[2] = 0;					\
    tc[3] = IEEE_ONE;				\
 }
