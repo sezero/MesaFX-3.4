@@ -34,6 +34,8 @@
 
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "glapi.h"
 #include "glxapi.h"
 
