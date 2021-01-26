@@ -234,7 +234,7 @@ struct fx_fast_tab
 {
    void (*build_vertices)( struct vertex_buffer *VB, GLuint do_clip );
 
-   void (*clip[GL_POLYGON+1])( struct vertex_buffer *VB,
+   void (*clip[GL_POLYGON+2])( struct vertex_buffer *VB,
 			       GLuint start,
 			       GLuint count,
 			       GLuint parity );
