@@ -90,7 +90,7 @@
   v[XCOORD]=win[0]+fxMesa->x_offset;		\
   v[YCOORD]=win[1]+fxMesa->y_delta;		
 #else
-#  if (defined(__linux__) && defined(__i386__)) || defined(macintosh)
+#  if (defined(__linux__) && defined(__i386__)) || defined(macintosh) ||defined(__DJGPP__)
 #    define DO_SETUP_XY {			\
        GLfloat t1 = win[0] + snapper;	\
        GLfloat t2 = win[1] + snapper;	\
