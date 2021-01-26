@@ -601,6 +601,12 @@ void fxDDTexPalette(GLcontext *ctx, struct gl_texture_object *tObj)
     convertPalette(fxMesa->glbPalette.data, &ctx->Texture.Palette);
     fxMesa->new_state |= FX_NEW_TEXTURING;
     ctx->Driver.RenderStart = fxSetupFXUnits;
+
+    FX_grTexDownloadTable(GR_TMU0,GR_TEXTABLE_PALETTE, &(fxMesa->glbPalette));
+#if !defined(FX_GLIDE3)
+    if (fxMesa->haveTwoTMUs)
+       FX_grTexDownloadTable(GR_TMU1, GR_TEXTABLE_PALETTE, &(fxMesa->glbPalette));
+#endif
   }
 }
 
@@ -615,10 +621,6 @@ void fxDDTexUseGlbPalette(GLcontext *ctx, GLboolean state)
 
   if (state) {
     fxMesa->haveGlobalPaletteTexture = 1;
-
-    FX_grTexDownloadTable(GR_TMU0,GR_TEXTABLE_PALETTE, &(fxMesa->glbPalette));
-    if (fxMesa->haveTwoTMUs)
-       FX_grTexDownloadTable(GR_TMU1, GR_TEXTABLE_PALETTE, &(fxMesa->glbPalette));
   }
   else {
     fxMesa->haveGlobalPaletteTexture = 0;

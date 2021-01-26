@@ -716,8 +716,10 @@ void GLAPIENTRY gl3DfxSetPaletteEXT(GLuint *pal)
     fxMesa->haveGlobalPaletteTexture=1;
     
     FX_grTexDownloadTable(GR_TMU0,GR_TEXTABLE_PALETTE,(GuTexPalette *)pal);
+#if !defined(FX_GLIDE3)
     if (fxMesa->haveTwoTMUs)
     	 FX_grTexDownloadTable(GR_TMU1,GR_TEXTABLE_PALETTE,(GuTexPalette *)pal);
+#endif
   }
 }
 

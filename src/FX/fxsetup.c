@@ -351,7 +351,9 @@ static void fxSetupSingleTMU_NoLock(fxMesaContext fxMesa, struct gl_texture_obje
 	  fprintf(stderr,"fxmesa: uploading texture palette\n");
        }
       FX_grTexDownloadTable_NoLock(GR_TMU0,GR_TEXTABLE_PALETTE,&(ti->palette));
+#if !defined(FX_GLIDE3)
       FX_grTexDownloadTable_NoLock(GR_TMU1,GR_TEXTABLE_PALETTE,&(ti->palette));
+#endif
     }
 
     FX_grTexClampMode_NoLock(GR_TMU0,ti->sClamp,ti->tClamp);
@@ -713,12 +715,14 @@ static void fxSetupDoubleTMU_NoLock(fxMesaContext fxMesa,
        FX_grTexDownloadTable_NoLock(tmu0, GR_TEXTABLE_PALETTE, &(ti0->palette));
     }
 
+#if !defined(FX_GLIDE3)
     if (ti1->info.format==GR_TEXFMT_P_8) {
        if (MESA_VERBOSE&VERBOSE_DRIVER) {
 	  fprintf(stderr,"fxmesa: uploading texture palette TMU1\n");
        }
        FX_grTexDownloadTable_NoLock(tmu1, GR_TEXTABLE_PALETTE, &(ti1->palette));
     }
+#endif
   }
 
   FX_grTexSource_NoLock(tmu0, ti0->tm[tmu0]->startAddr, 
