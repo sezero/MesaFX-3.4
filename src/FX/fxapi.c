@@ -1028,7 +1028,7 @@ fxMesaContext GLAPIENTRY fxMesaCreateContext(GLuint win,
          useBGR =  GL_FALSE;
          system = "Voodoo3";
       }
-      if (getenv("MESA_FX_INFO")) { 
+      if (verbose) {
         printf("Voodoo: Texelfx: %d / FBI Rev.: %d / TMU Rev.: %d / TMU RAM: %d\n",
                voodoo->nTexelfx,
                voodoo->fbiRev,
@@ -1042,7 +1042,7 @@ fxMesaContext GLAPIENTRY fxMesaCreateContext(GLuint win,
    }
 #endif /*FXMESA_USE_ARGB*/
 
-   if (getenv("MESA_FX_INFO")) 
+   if(verbose)
       printf("Voodoo pixel order: %s (%s)\n", useBGR ? "BGR" : "RGB", system);
 
    fxInitPixelTables(fxMesa, useBGR);
@@ -1063,7 +1063,7 @@ fxMesaContext GLAPIENTRY fxMesaCreateContext(GLuint win,
    
    fxMesa->needClip = 0;
 
-   if(verbose)
+   if (verbose)
       fprintf(stderr,"Voodoo Glide screen size: %dx%d\n",
               (int)FX_grSstScreenWidth(),(int)FX_grSstScreenHeight());
 
