@@ -1670,7 +1670,9 @@ gl_destroy_context( GLcontext *ctx )
 void
 gl_context_initialize( GLcontext *ctx )
 {
+#if !(defined(__MSDOS__) || defined(_WIN32))
    gl_read_config_file( ctx );
+#endif
 }
 
 
