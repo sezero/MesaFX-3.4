@@ -698,7 +698,6 @@ void GLAPIENTRY fxMesaSetNearFar(GLfloat n, GLfloat f)
  * More a trick than a real extesion, use the shared global
  * palette extension. 
  */
-extern void GLAPIENTRY gl3DfxSetPaletteEXT(GLuint *pal); /* silence warning */
 void GLAPIENTRY gl3DfxSetPaletteEXT(GLuint *pal)
 {
   fxMesaContext fxMesa =fxMesaCurrentCtx;

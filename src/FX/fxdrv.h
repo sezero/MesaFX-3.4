@@ -687,4 +687,7 @@ extern void fxTMMoveInTM_NoLock(fxMesaContext fxMesa,
 				GLint where);
 extern void fxInitPixelTables(fxMesaContext fxMesa, GLboolean bgrOrder);
 
+
+GLAPI void GLAPIENTRY gl3DfxSetPaletteEXT(GLuint *_pal);
+
 #endif

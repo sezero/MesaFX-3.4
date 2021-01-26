@@ -55,7 +55,7 @@
 extern "C" {
 #endif
 
-#define GL_GLEXT_PROTOTYPES 1
+#define GL_GLEXT_PROTOTYPES
 #include "fxdrv.h"
 #include <windows.h>
 #include "GL/gl.h"
@@ -80,8 +80,6 @@ struct __pixelformat__
   PIXELFORMATDESCRIPTOR pfd;
   GLint mesaAttr[MAX_MESA_ATTRS];
 };
-
-WINGDIAPI void GLAPIENTRY gl3DfxSetPaletteEXT(GLuint *);
 
 static struct __extensions__   ext[] = {
 
@@ -109,6 +107,7 @@ static struct __extensions__   ext[] = {
    { (PROC)glTexImage3DEXT,			"glTexImage3DEXT"		},
    { (PROC)glTexSubImage3DEXT,			"glTexSubImage3DEXT"		},
    { (PROC)gl3DfxSetPaletteEXT,			"3DFX_set_global_palette"	},
+   { (PROC)gl3DfxSetPaletteEXT,			"gl3DfxSetPaletteEXT"		},
    { (PROC)glColorTableEXT,			"glColorTableEXT"		},
    { (PROC)glColorSubTableEXT,			"glColorSubTableEXT"		},
    { (PROC)glGetColorTableEXT,			"glGetColorTableEXT"		},
