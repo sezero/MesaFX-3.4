@@ -787,6 +787,7 @@ fxMesaContext GLAPIENTRY fxMesaCreateBestContext(GLuint win,GLint width, GLint h
   int res,aux;
   refresh=GR_REFRESH_75Hz;
 
+#if 0
   if(getenv("SST_SCREENREFRESH")) {
     if(!strcmp(getenv("SST_SCREENREFRESH"),"60"))
       refresh=GR_REFRESH_60Hz;
@@ -807,6 +808,7 @@ fxMesaContext GLAPIENTRY fxMesaCreateBestContext(GLuint win,GLint width, GLint h
     if(!strcmp(getenv("SST_SCREENREFRESH"),"120"))
       refresh=GR_REFRESH_120Hz;
   }
+#endif
 
   aux=0;
   for(i=0;attribList[i]!=FXMESA_NONE;i++)
