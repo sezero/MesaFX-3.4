@@ -915,7 +915,7 @@ _mesa_update_histogram(GLcontext *ctx, GLuint n, const GLfloat rgba[][4])
 void
 _mesa_ConvolutionFilter1D(GLenum target, GLenum internalFormat, GLsizei width, GLenum format, GLenum type, const GLvoid *image)
 {
-   GLenum baseFormat;
+   GLint baseFormat;
    GET_CURRENT_CONTEXT(ctx);
    ASSERT_OUTSIDE_BEGIN_END_AND_FLUSH(ctx, "glConvolutionFilter1D");
 
@@ -980,7 +980,7 @@ _mesa_ConvolutionFilter1D(GLenum target, GLenum internalFormat, GLsizei width, G
 void
 _mesa_ConvolutionFilter2D(GLenum target, GLenum internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *image)
 {
-   GLenum baseFormat;
+   GLint baseFormat;
    GLint i, components;
    GET_CURRENT_CONTEXT(ctx);
    ASSERT_OUTSIDE_BEGIN_END_AND_FLUSH(ctx, "glConvolutionFilter2D");
@@ -1254,7 +1254,7 @@ _mesa_ConvolutionParameteriv(GLenum target, GLenum pname, const GLint *params)
 void
 _mesa_CopyConvolutionFilter1D(GLenum target, GLenum internalFormat, GLint x, GLint y, GLsizei width)
 {
-   GLenum baseFormat;
+   GLint baseFormat;
    GLubyte rgba[MAX_CONVOLUTION_WIDTH][4];
    GET_CURRENT_CONTEXT(ctx);
    ASSERT_OUTSIDE_BEGIN_END_AND_FLUSH(ctx, "glCopyConvolutionFilter1D");
@@ -1289,7 +1289,7 @@ _mesa_CopyConvolutionFilter1D(GLenum target, GLenum internalFormat, GLint x, GLi
 void
 _mesa_CopyConvolutionFilter2D(GLenum target, GLenum internalFormat, GLint x, GLint y, GLsizei width, GLsizei height)
 {
-   GLenum baseFormat;
+   GLint baseFormat;
    GLint i;
    struct gl_pixelstore_attrib packSave;
    GLubyte rgba[MAX_CONVOLUTION_HEIGHT][MAX_CONVOLUTION_WIDTH][4];
@@ -1560,7 +1560,7 @@ void
 _mesa_SeparableFilter2D(GLenum target, GLenum internalFormat, GLsizei width, GLsizei height, GLenum format, GLenum type, const GLvoid *row, const GLvoid *column)
 {
    const GLint colStart = MAX_CONVOLUTION_WIDTH * 4;
-   GLenum baseFormat;
+   GLint baseFormat;
    GET_CURRENT_CONTEXT(ctx);
    ASSERT_OUTSIDE_BEGIN_END_AND_FLUSH(ctx, "glSeparableFilter2D");
 

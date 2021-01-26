@@ -1237,7 +1237,7 @@ _mesa_DrawElements(GLenum mode, GLsizei count, GLenum type, const GLvoid *indice
       return;
    }
 
-   if (mode < 0 || mode > GL_POLYGON) {
+   if (mode > GL_POLYGON) {
       gl_error( ctx, GL_INVALID_ENUM, "glDrawArrays(mode)" );
       return;
    }

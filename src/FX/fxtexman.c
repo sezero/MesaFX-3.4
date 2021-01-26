@@ -295,7 +295,7 @@ static MemRange *fxTMAddObj(fxMesaContext fxMesa,
 			    struct gl_texture_object *tObj,
 			    GLint tmu, int texmemsize)
 {
-  FxU32 startAddr;
+  FxI32 startAddr;
   MemRange *range;
 
   startAddr=fxTMFindStartAddr(fxMesa, tmu, texmemsize);
