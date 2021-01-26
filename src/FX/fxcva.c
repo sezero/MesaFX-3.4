@@ -414,7 +414,6 @@ extern void fxPointSmooth(GLcontext *ctx, GLuint first, GLuint last);
 extern void fxLineSmooth(GLcontext *ctx, GLuint v1, GLuint v2, GLuint pv);
 extern void fxTriangleSmooth(GLcontext *ctx, GLuint v1, GLuint v2, GLuint v3, 
 			     GLuint pv);
-extern const char *gl_prim_name[];
 
 
 /* static GLboolean edge_flag[GL_POLYGON+2] = { 0,0,0,0,1,0,0,1,0,1,0 }; */
@@ -461,7 +460,7 @@ void fxDDMergeAndRender( struct vertex_buffer *VB )
       cvaVB->TexCoordPtr[1] = cvaVB->store.TexCoord[1];
       flags |= fxMesa->tex_dest[1];
    }
-#if 0
+#if defined(MESA_DEBUG) && 0
    fxPrintSetupFlags("FX cva merge & render", flags);
 #endif
 

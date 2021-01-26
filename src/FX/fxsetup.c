@@ -68,7 +68,9 @@ static void fxSetupBlend(GLcontext *ctx);
 static void fxSetupDepthTest(GLcontext *ctx);
 static void fxSetupScissor(GLcontext *ctx);
 static void fxSetupCull(GLcontext *ctx);
+#ifdef MESA_DEBUG
 static void gl_print_fx_state_flags( const char *msg, GLuint flags);
+#endif
 /*static GLboolean fxMultipassBlend(struct vertex_buffer *, GLuint);*/
 static GLboolean fxMultipassTexture( struct vertex_buffer *, GLuint );
 
@@ -143,6 +145,7 @@ static void fxTexValidate(GLcontext *ctx, struct gl_texture_object *tObj)
   }
 }
 
+#ifdef MESA_DEBUG
 static void fxPrintUnitsMode( const char *msg, GLuint mode )
 {
    fprintf(stderr, 
@@ -174,6 +177,7 @@ static void fxPrintUnitsMode( const char *msg, GLuint mode )
 	   (mode & FX_UM_ALPHA_ITERATED)     ? "ALPHA_ITERATED, " : "",
 	   (mode & FX_UM_ALPHA_CONSTANT)     ? "ALPHA_CONSTANT, " : "");
 }
+#endif
 
 static GLuint fxGetTexSetConfiguration(GLcontext *ctx,
 				       struct gl_texture_object *tObj0,
@@ -298,10 +302,10 @@ static GLuint fxGetTexSetConfiguration(GLcontext *ctx,
   }
 
   unitsmode|=(ifmt | envmode);
-
-  if (MESA_VERBOSE & (VERBOSE_DRIVER|VERBOSE_TEXTURE)) 
+#ifdef MESA_DEBUG
+  if (MESA_VERBOSE & (VERBOSE_DRIVER|VERBOSE_TEXTURE))
      fxPrintUnitsMode("unitsmode", unitsmode);
-
+#endif
   return unitsmode;
 }
 
@@ -1792,6 +1796,7 @@ void fxDDShadeModel(GLcontext *ctx, GLenum mode)
 /************************************************************************/
 /****************************** Units SetUp *****************************/
 /************************************************************************/
+#ifdef MESA_DEBUG
 static void gl_print_fx_state_flags( const char *msg, GLuint flags )
 {
    fprintf(stderr, 
@@ -1806,15 +1811,16 @@ static void gl_print_fx_state_flags( const char *msg, GLuint flags )
 	   (flags & FX_NEW_COLOR_MASK)  ? "colormask, " : "",
 	   (flags & FX_NEW_CULL)        ? "cull, " : "");
 }
+#endif
 
 void fxSetupFXUnits( GLcontext *ctx )
 {
   fxMesaContext fxMesa=(fxMesaContext)ctx->DriverCtx;
   GLuint newstate = fxMesa->new_state;
-
+#ifdef MESA_DEBUG
   if (MESA_VERBOSE&VERBOSE_DRIVER)
      gl_print_fx_state_flags("fxmesa: fxSetupFXUnits", newstate);
-
+#endif
   if (newstate) {
      if (newstate & FX_NEW_TEXTURING)
 	fxSetupTexture(ctx);

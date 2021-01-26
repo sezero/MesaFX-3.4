@@ -60,6 +60,7 @@ struct cnode {
 
 /* Pretty printer for debugging.
  */
+#if 0
 static void pad(int n) { putchar('\n'); while(n--) putchar(' '); }
 
 static void print_list( struct cnode *n, int indent ) 
@@ -85,8 +86,7 @@ static void print_list( struct cnode *n, int indent )
    }
    printf(" )");
 }
-
-
+#endif
 
 /* Accessors to query the contents of a cnode.
  */

@@ -859,6 +859,7 @@ static void update_rasterflags( GLcontext *ctx )
 }
 
 
+#ifdef MESA_DEBUG
 void gl_print_state( const char *msg, GLuint state )
 {
    fprintf(stderr,
@@ -904,6 +905,7 @@ void gl_print_enable_flags( const char *msg, GLuint flags )
 	   (flags & ENABLE_NORMALIZE)  ? "normalize, " : "",
 	   (flags & ENABLE_RESCALE)    ? "rescale, " : "");
 }
+#endif
 
 
 /*

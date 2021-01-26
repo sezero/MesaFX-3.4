@@ -234,6 +234,7 @@ void fxDDTrifuncInit()
 #endif
 }
 
+#ifdef MESA_DEBUG
 void fxPrintRenderState( const char *msg, GLuint state )
 {
    fprintf(stderr, "%s: (%x) %s%s%s%s%s%s\n",
@@ -258,6 +259,7 @@ void fxPrintHintState( const char *msg, GLuint state )
 	   (state & GR_STWHINT_ST_DIFF_TMU1)  ? "st-tmu1, " : "");
 
 }
+#endif
 
 
 void fxDDChooseRenderState( GLcontext *ctx )

@@ -530,7 +530,9 @@ typedef void (*tfxSetupFunc)(struct vertex_buffer *, GLuint, GLuint);
 extern GrHwConfiguration glbHWConfig;
 extern int glbCurrentBoard;
 
+#ifdef MESA_DEBUG
 extern void fxPrintSetupFlags( const char *msg, GLuint flags );
+#endif
 extern void fxSetupFXUnits(GLcontext *);
 extern void fxSetupDDPointers(GLcontext *);
 extern void fxDDSetNearFar(GLcontext *, GLfloat, GLfloat);
@@ -563,7 +565,9 @@ extern void fxDDClipInit(void);
 extern void fxUpdateDDSpanPointers(GLcontext *);
 extern void fxSetupDDSpanPointers(GLcontext *);
 
+#if 0
 extern void fxPrintTextureData(tfxTexInfo *ti);
+#endif
 extern GLboolean fxDDTexImage2D(GLcontext *ctx, GLenum target, GLint level,
                               GLenum format, GLenum type, const GLvoid *pixels,
                               const struct gl_pixelstore_attrib *packing,

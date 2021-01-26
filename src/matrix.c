@@ -51,6 +51,7 @@
 #endif
 
 
+#if 0 /**/
 static const char *types[] = {
    "MATRIX_GENERAL",
    "MATRIX_IDENTITY",
@@ -60,6 +61,7 @@ static const char *types[] = {
    "MATRIX_2D_NO_ROT",
    "MATRIX_3D"
 };
+#endif /**/
 static void matmul4( GLfloat *product, const GLfloat *a, const GLfloat *b );
 
 
@@ -71,6 +73,7 @@ static const GLfloat Identity[16] = {
 };
 
 
+#if 0 /**/
 static void print_matrix_floats( const GLfloat m[16] )
 {
    int i;
@@ -95,6 +98,7 @@ void gl_print_matrix( const GLmatrix *m )
       fprintf(stderr, "  - not available\n");
 #endif
 }
+#endif /**/
 
 
 

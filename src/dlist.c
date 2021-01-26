@@ -5525,6 +5525,7 @@ _mesa_init_dlist_table( struct _glapi_table *table, GLuint tableSize )
 
 
 
+#ifdef MESA_DEBUG
 /***
  *** Debugging code
  ***/
@@ -5716,3 +5717,4 @@ void mesa_print_display_list( GLuint list )
    GET_CURRENT_CONTEXT(ctx);
    print_list( ctx, stderr, list );
 }
+#endif

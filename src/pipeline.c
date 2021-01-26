@@ -75,8 +75,7 @@ int MESA_DEBUG_FLAGS = 0
 ;
 #endif
 
-
-
+#ifdef MESA_DEBUG
 void gl_print_pipe_ops( const char *msg, GLuint flags )
 {
    fprintf(stderr, 
@@ -95,7 +94,7 @@ void gl_print_pipe_ops( const char *msg, GLuint flags )
 	   (flags & PIPE_OP_RENDER)        ? "render, " : "");
 
 }
-
+#endif
 
 
 /* Have to reset only those parts of the vb which are being recalculated.
@@ -530,6 +529,7 @@ void gl_run_pipeline( struct vertex_buffer *VB )
    pipe->new_state = 0;
 }
 
+#ifdef MESA_DEBUG
 void gl_print_vert_flags( const char *name, GLuint flags ) 
 {
    fprintf(stderr, 
@@ -672,5 +672,5 @@ void gl_print_active_pipeline( GLcontext *ctx, struct gl_pipeline *p )
 				stages[i]->pre_forbidden_inputs);
       }
 }
-
+#endif
 

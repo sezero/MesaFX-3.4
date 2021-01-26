@@ -57,6 +57,7 @@
 #include "pipeline.h"
 #include "fxvsetup.h"
 
+#ifdef MESA_DEBUG
 void fxPrintSetupFlags( const char *msg, GLuint flags )
 {
    fprintf(stderr, "%s: %d %s%s%s%s%s%s\n",
@@ -69,6 +70,7 @@ void fxPrintSetupFlags( const char *msg, GLuint flags )
 	  (flags & SETUP_TMU0)  ? " tmu0," : "",
 	  (flags & SETUP_TMU1)  ? " tmu1," : "");
 }
+#endif
 
 static void project_texcoords( struct vertex_buffer *VB,
 			       GLuint tmu_nr, GLuint tc_nr,
@@ -328,8 +330,10 @@ tfxSetupFunc fxDDChooseSetupFunction(GLcontext *ctx)
    if (ctx->Color.BlendEnabled)
       setupindex |= SETUP_RGBA;
 
+#ifdef MESA_DEBUG
    if (MESA_VERBOSE & (VERBOSE_DRIVER|VERBOSE_PIPELINE|VERBOSE_STATE))
       fxPrintSetupFlags("fxmesa: vertex setup function", setupindex); 
+#endif
 
    fxMesa->setupindex = setupindex;
    fxMesa->view_clip_tri = fxTriViewClipTab[setupindex&0x7];
@@ -459,10 +463,12 @@ void fxDDPartialRasterSetup( struct vertex_buffer *VB )
    ind &= fxMesa->setupindex;
    fxMesa->setupdone |= ind;
 
+#ifdef MESA_DEBUG
    if (MESA_VERBOSE & (VERBOSE_DRIVER|VERBOSE_PIPELINE)) {
       gl_print_vert_flags("new outputs", VB->pipeline->new_outputs);
       fxPrintSetupFlags("fxmesa: partial setup function", ind); 
    }
+#endif
 
    if (ind) 
       setupfuncs[ind]( VB, VB->Start, VB->Count );   

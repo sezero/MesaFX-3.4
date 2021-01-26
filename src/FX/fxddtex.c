@@ -217,6 +217,7 @@ _mesa_unconvert_teximage(GLint mesaFormat, GLint srcWidth, GLint srcHeight,
 }
 
 
+#if 0
 void fxPrintTextureData(tfxTexInfo *ti)
 {
   fprintf(stderr, "Texture Data:\n");
@@ -247,6 +248,7 @@ void fxPrintTextureData(tfxTexInfo *ti)
   fprintf(stderr, "\t%s\n", (ti->fixedPalette)?"Fixed palette":"Non fixed palette");
   fprintf(stderr, "\t%s\n", (ti->validated)?"Validated":"Not validated");
 }
+#endif
 
 
 /************************************************************************/
@@ -1253,6 +1255,7 @@ GLboolean fxDDTexSubImage2D(GLcontext *ctx, GLenum target, GLint level,
 }
 
 
+#if 0
 static void PrintTexture(int w, int h, int c, const GLubyte *data)
 {
   int i, j;
@@ -1267,6 +1270,7 @@ static void PrintTexture(int w, int h, int c, const GLubyte *data)
     printf("\n");
   }
 }
+#endif
 
 
 GLvoid *fxDDGetTexImage(GLcontext *ctx, GLenum target, GLint level,

@@ -47,10 +47,10 @@
 #include "conf.h"
 #endif
 
-
-
 #if defined(FX)
 #include "fxdrv.h"
+
+#if defined(MESA_DEBUG)
 
 /* I have found this quite useful in tracking down transformation &
  * clipping bugs.  If you get a random graphics card freeze, running
@@ -114,6 +114,8 @@ void fx_sanity_triangle( GrVertex *v1, GrVertex *v2, GrVertex *v3 )
    else 
       fprintf(stderr, "\n\n\n");
 }
+
+#endif /* MESA_DEBUG */
 
 #else
 
