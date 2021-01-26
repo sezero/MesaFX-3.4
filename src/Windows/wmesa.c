@@ -53,7 +53,7 @@
 
 #if !defined(NO_STEREO)
 
-#include "gl\glu.h"
+#include "GL/glu.h"
 #include "stereo.h"
 
 #endif
@@ -76,6 +76,7 @@ GLint stereo_flag = 0 ;
 static PWMC Current = NULL;
 WMesaContext WC = NULL;
 
+#undef assert
 #ifdef NDEBUG
 #define assert(ignore)  ((void) 0)
 #else
@@ -2354,7 +2355,7 @@ static void flat_5R6G5B_z_triangle( GLcontext *ctx, GLuint v0, GLuint v1,
 #else
 
 	#ifdef WIN32
-		#include "..\tritemp.h"
+		#include "../tritemp.h"
 	#else
 		#include "tritemp.h"
 	#endif

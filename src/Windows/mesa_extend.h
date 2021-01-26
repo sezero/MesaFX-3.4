@@ -13,7 +13,7 @@
 #include <windows.h>
 #include <winbase.h>
 
-typedef enum SHIFT{ SHIFT_NONE, SHIFT_LEFT,SHIFT_RIGHT,SHIFT_UP,SHIFT_DOWN,SHIFT_FAR,SHIFT_NEAR};
+enum { SHIFT_NONE, SHIFT_LEFT,SHIFT_RIGHT,SHIFT_UP,SHIFT_DOWN,SHIFT_FAR,SHIFT_NEAR};
 
 extern GLfloat deltaView ;
 

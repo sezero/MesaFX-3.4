@@ -49,9 +49,9 @@
 #endif
 
 #if !defined(OPENSTEP) && (defined(__WIN32__) && !defined(__CYGWIN__))
-#  if defined(_MSC_VER) && defined(BUILD_GL32) /* tag specify we're building mesa as a DLL */
+#  if (defined(_MSC_VER) || defined(__MINGW32__)) && defined(BUILD_GL32) /* tag specify we're building mesa as a DLL */
 #    define GLAPI __declspec(dllexport)
-#  elif defined(_MSC_VER) && defined(_DLL) /* tag specifying we're building for DLL runtime support */
+#  elif (defined(_MSC_VER) || defined(__MINGW32__)) && defined(_DLL) /* tag specifying we're building for DLL runtime support */
 #    define GLAPI __declspec(dllimport)
 #  else /* for use with static link lib build of Win32 edition only */
 #    define GLAPI extern
@@ -64,7 +64,7 @@
 #endif /* WIN32 / CYGWIN bracket */
 
 #if defined(_WIN32) && !defined(_WINGDI_) && !defined(_GNU_H_WINDOWS32_DEFINES) && !defined(OPENSTEP) && !defined(__CYGWIN__)
-#include <gl/mesa_wgl.h>
+#include <GL/mesa_wgl.h>
 #endif
 
 #if defined(macintosh) && PRAGMA_IMPORT_SUPPORTED

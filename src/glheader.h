@@ -79,6 +79,7 @@
 #endif
 
 #if !defined(OPENSTEP) && (defined(__WIN32__) && !defined(__CYGWIN__))
+#  ifdef _MSC_VER
 #  pragma warning( disable : 4068 ) /* unknown pragma */
 #  pragma warning( disable : 4710 ) /* function 'foo' not inlined */
 #  pragma warning( disable : 4711 ) /* function 'foo' selected for automatic inline expansion */
@@ -90,10 +91,11 @@
 #    pragma warning( disable : 4550 ) /* 'function' undefined; assuming extern returning int */
 #    pragma warning( disable : 4761 ) /* integral size mismatch in argument; conversion supplied */
 #  endif
-#  if defined(_MSC_VER) && defined(BUILD_GL32) /* tag specify we're building mesa as a DLL */
+#  endif /* _MSC_VER */
+#  if (defined(_MSC_VER)||defined(__MINGW32__)) && defined(BUILD_GL32) /* tag specify we're building mesa as a DLL */
 #    define GLAPI __declspec(dllexport)
 #    define WGLAPI __declspec(dllexport)
-#  elif defined(_MSC_VER) && defined(_DLL) /* tag specifying we're building for DLL runtime support */
+#  elif (defined(_MSC_VER)||defined(__MINGW32__)) && defined(_DLL) /* tag specifying we're building for DLL runtime support */
 #    define GLAPI __declspec(dllimport)
 #    define WGLAPI __declspec(dllimport)
 #  else /* for use with static link lib build of Win32 edition only */
@@ -156,7 +158,7 @@ typedef struct tagLAYERPLANEDESCRIPTOR LAYERPLANEDESCRIPTOR, *PLAYERPLANEDESCRIP
 typedef struct _GLYPHMETRICSFLOAT GLYPHMETRICSFLOAT, *PGLYPHMETRICSFLOAT, *LPGLYPHMETRICSFLOAT;
 typedef struct tagPIXELFORMATDESCRIPTOR PIXELFORMATDESCRIPTOR, *PPIXELFORMATDESCRIPTOR, *LPPIXELFORMATDESCRIPTOR;
 #if !defined(GLX_USE_MESA)
-#include <gl/mesa_wgl.h>
+#include <GL/mesa_wgl.h>
 #endif
 #endif
 

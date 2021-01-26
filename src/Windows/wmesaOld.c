@@ -64,7 +64,7 @@
 
 #if !defined(NO_STEREO)
 
-	#include "gl\glu.h"
+	#include "GL/glu.h"
 	#include "stereo.h"
 
 #endif

@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <wmesadef.h>
 
-#include <GL\wmesa.h>
+#include <GL/wmesa.h>
 #include "context.h"
 #include "dd.h"
 #include "xform.h"
@@ -35,7 +35,7 @@
 
 #if !defined(NO_STEREO)
 
-	#include "gl\glu.h"
+	#include "GL/glu.h"
 	#include "stereo.h"
 
 	PBYTE Buffer_Stereo;

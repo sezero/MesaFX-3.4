@@ -1201,7 +1201,7 @@ static void flat_rgba_line( GLcontext *ctx,
 #define PLOT(X,Y) { GLuint *ptr4 = PIXELADDR4(X,Y); *ptr4 = pixel; }
 
 #ifdef WIN32
-#include "..\linetemp.h"
+#include "../linetemp.h"
 #else
 #include "linetemp.h"
 #endif
@@ -1230,7 +1230,7 @@ static void flat_rgba_z_line( GLcontext *ctx,
 	}
 
 #ifdef WIN32
-#include "..\linetemp.h"
+#include "../linetemp.h"
 #else
 #include "linetemp.h"
 #endif
@@ -1266,7 +1266,7 @@ static void flat_blend_rgba_line( GLcontext *ctx,
    }
 
 #ifdef WIN32
-#include "..\linetemp.h"
+#include "../linetemp.h"
 #else
 #include "linetemp.h"
 #endif
@@ -1305,7 +1305,7 @@ static void flat_blend_rgba_z_line( GLcontext *ctx,
 	}
 
 #ifdef WIN32
-#include "..\linetemp.h"
+#include "../linetemp.h"
 #else
 #include "linetemp.h"
 #endif
@@ -1345,7 +1345,7 @@ static void flat_blend_rgba_z_line_write( GLcontext *ctx,
 	}
 
 #ifdef WIN32
-#include "..\linetemp.h"
+#include "../linetemp.h"
 #else
 #include "linetemp.h"
 #endif
@@ -1489,7 +1489,7 @@ static void smooth_rgba_z_triangle( GLcontext *ctx, GLuint v0, GLuint v1,
    }								\
 }
 #ifdef WIN32
-#include "..\tritemp.h"
+#include "../tritemp.h"
 #else
 #include "tritemp.h"
 #endif
@@ -1528,7 +1528,7 @@ static void flat_rgba_z_triangle( GLcontext *ctx, GLuint v0, GLuint v1,
    }					\
 }
 #ifdef WIN32
-#include "..\tritemp.h"
+#include "../tritemp.h"
 #else
 #include "tritemp.h"
 #endif

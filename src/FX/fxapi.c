@@ -1376,7 +1376,7 @@ int GLAPIENTRY fxQueryHardware(void)
     glbGlideInitialized = 1;
 
 #if defined(__WIN32__)
-    onexit((_onexit_t)cleangraphics);
+    _onexit((_onexit_t)cleangraphics);
 #elif defined(__linux__)
     /* Only register handler if environment variable is not defined. */
     if (!getenv("MESA_FX_NO_SIGNALS")) {

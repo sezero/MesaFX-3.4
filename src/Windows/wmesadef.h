@@ -58,7 +58,7 @@
 #define DDMESADEF_H
 
 #include <windows.h>
-#include <GL\gl.h>
+#include <GL/gl.h>
 #include "context.h"
 #ifdef DDRAW
 	#include <ddraw.h>

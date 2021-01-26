@@ -69,8 +69,9 @@ extern "C" {
 #endif
 
 
-#include "gl\gl.h"
+#include "GL/gl.h"
 
+#if defined(_MSC_VER)
 #pragma warning (disable:4273)
 #pragma warning( disable : 4244 ) /* '=' : conversion from 'const double ' to 'float ', possible loss of data */
 #pragma warning( disable : 4018 ) /* '<' : signed/unsigned mismatch */
@@ -80,6 +81,7 @@ extern "C" {
 #pragma warning( disable : 4273 ) /* 'identifier' : inconsistent DLL linkage. dllexport assumed */
 #if (MESA_WARNQUIET>1)
 #	pragma warning( disable : 4146 ) /* unary minus operator applied to unsigned type, result still unsigned */
+#endif
 #endif
 
 /*
