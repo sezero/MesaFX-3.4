@@ -259,13 +259,15 @@ void gl_init_all_x86_transform_asm( void )
 #endif
 
 #ifdef USE_KATMAI_ASM
-   if ( cpu_has_xmm && getenv( "MESA_FORCE_KATMAI" ) == 0 ) {
-      check_os_katmai_support();
-   }
    if ( cpu_has_xmm ) {
-      if ( getenv( "MESA_NO_KATMAI" ) == 0 ) {
+      if (!getenv("MESA_NO_KATMAI") && !getenv("MESA_NO_SSE")) {
          message( "Katmai cpu detected.\n" );
-         gl_init_katmai_transform_asm();
+         if (!getenv("MESA_FORCE_KATMAI") && !getenv("MESA_FORCE_SSE")) {
+            check_os_katmai_support();
+         }
+         if ( cpu_has_xmm ) {
+            gl_init_katmai_transform_asm();
+         }
       } else {
          gl_x86_cpu_features &= ~(X86_FEATURE_XMM);
       }
@@ -306,7 +308,7 @@ void gl_init_all_x86_vertex_asm( void )
 #endif
 
 #ifdef USE_KATMAI_ASM
-   if ( cpu_has_xmm && getenv( "MESA_NO_KATMAI" ) == 0 ) {
+   if ( cpu_has_xmm && !getenv("MESA_NO_KATMAI") && !getenv("MESA_NO_SSE") ) {
       gl_init_katmai_vertex_asm();
    }
 #endif
