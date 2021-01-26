@@ -132,6 +132,16 @@ static void skip_comment( FILE *file )
 }
 
 
+static int cfg_isspace (int c)
+{
+   switch(c) {
+   case ' ': case '\t':
+   case '\n': case '\r':
+   case '\f': case '\v': return 1;
+   }
+   return 0;
+}
+
 static struct cnode *get_word( int line, FILE *file )
 {
    int sz = 16, len = 0;
@@ -141,7 +151,7 @@ static struct cnode *get_word( int line, FILE *file )
       int c = getc(file);
       if (len == sz)  
 	 text = (char *) realloc( text, sizeof(char) * (sz *= 2) );
-      if (c == EOF || isspace(c) || c == ')') {
+      if (c == EOF || cfg_isspace(c) || c == ')') {
 	 struct cnode *n = MALLOC_STRUCT(cnode);
 	 ungetc(c, file);
 	 text[len] = 0;
@@ -175,7 +185,7 @@ static struct cnode *get_list( int *line, FILE *file )
 	 n = get_list( line, file );
 	 break;
       default: 
-	 if (isspace(c)) continue;
+	 if (cfg_isspace(c)) continue;
 	 ungetc(c, file); 
 	 n = get_word( *line, file );
 	 break;
