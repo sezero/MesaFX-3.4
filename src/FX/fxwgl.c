@@ -72,7 +72,7 @@ extern "C" {
 struct __extensions__
 {
   PROC  proc;
-  char  *name;
+  const char *name;
 };
 
 struct __pixelformat__

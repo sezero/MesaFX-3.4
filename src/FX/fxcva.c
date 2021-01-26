@@ -66,7 +66,7 @@
 #define PRIM_CULLED 3
 
 
-static GLuint reduce_prim[GL_POLYGON+2] = {
+static const GLuint reduce_prim[GL_POLYGON+2] = {
    PRIM_POINTS,
    PRIM_LINES,
    PRIM_LINES,

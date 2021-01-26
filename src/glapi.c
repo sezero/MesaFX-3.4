@@ -253,7 +253,7 @@ struct name_address_offset {
 };
 
 
-static struct name_address_offset static_functions[] = {
+static const struct name_address_offset static_functions[] = {
 	/* GL 1.1 */
         { "glNewList", (GLvoid *) glNewList, _gloffset_NewList },
         { "glEndList", (GLvoid *) glEndList, _gloffset_EndList },

@@ -63,7 +63,7 @@ static const char *types[] = {
 static void matmul4( GLfloat *product, const GLfloat *a, const GLfloat *b );
 
 
-static GLfloat Identity[16] = {
+static const GLfloat Identity[16] = {
    1.0, 0.0, 0.0, 0.0,
    0.0, 1.0, 0.0, 0.0,
    0.0, 0.0, 1.0, 0.0,
