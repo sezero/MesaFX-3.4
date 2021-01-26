@@ -116,7 +116,7 @@ static struct __extensions__   ext[] = {
    { (PROC)glGetColorTableParameterivEXT,	"glGetColorTableParameterivEXT"	},
    { (PROC)glPointParameterfEXT,		"glPointParameterfEXT"		},
    { (PROC)glPointParameterfvEXT,		"glPointParameterfvEXT"		},
-   { (PROC)glBlendFuncSeparateINGR,		"glBlendFuncSeparateINGR"	},
+/* { (PROC)glBlendFuncSeparateINGR,		"glBlendFuncSeparateINGR"	},*/
    { (PROC)glActiveTextureARB,                  "glActiveTextureARB"		},
    { (PROC)glClientActiveTextureARB,            "glClientActiveTextureARB"	},
    { (PROC)glMultiTexCoord1dARB,                "glMultiTexCoord1dARB"		},
