@@ -2190,7 +2190,7 @@ static void write_span_8R8G8B24_ximage( RGBA_SPAN_ARGS )
                   pixel &= 0x00ffffff;
                   pixel |= rgba[i][BCOMP] << 24;
                   *ptr4++ = pixel;
-                  pixel = *ptr4 && 0xffff0000;
+                  pixel = *ptr4 & 0xffff0000;
                   pixel |= rgba[i][GCOMP];
                   pixel |= rgba[i][RCOMP] << 8;
                   *ptr4 = pixel;
@@ -2200,7 +2200,7 @@ static void write_span_8R8G8B24_ximage( RGBA_SPAN_ARGS )
                   pixel |= rgba[i][BCOMP] << 16;
                   pixel |= rgba[i][GCOMP] << 24;
                   *ptr4++ = pixel;
-                  pixel = *ptr4 && 0xffffff00;
+                  pixel = *ptr4 & 0xffffff00;
                   pixel |= rgba[i][RCOMP];
                   *ptr4 = pixel;
                   break;
@@ -2230,7 +2230,7 @@ static void write_span_8R8G8B24_ximage( RGBA_SPAN_ARGS )
             pixel &= 0x00ffffff;
             pixel |= rgba[i][BCOMP] << 24;
             *ptr4++ = pixel;
-            pixel = *ptr4 && 0xffff0000;
+            pixel = *ptr4 & 0xffff0000;
             pixel |= rgba[i][GCOMP];
             pixel |= rgba[i++][RCOMP] << 8;
             *ptr4 = pixel;
@@ -2241,7 +2241,7 @@ static void write_span_8R8G8B24_ximage( RGBA_SPAN_ARGS )
             pixel |= rgba[i][BCOMP] << 16;
             pixel |= rgba[i][GCOMP] << 24;
             *ptr4++ = pixel;
-            pixel = *ptr4 && 0xffffff00;
+            pixel = *ptr4 & 0xffffff00;
             pixel |= rgba[i++][RCOMP];
             *ptr4 = pixel;
             if (0 == --w)
