@@ -268,6 +268,7 @@ LONG GLAPIENTRY __wglMonitor(HWND hwnd,UINT message,UINT wParam,LONG lParam)
       break;
     case WM_DISPLAYCHANGE:
     case WM_SIZE:
+#ifndef FX_GLIDE3
       if (wParam != SIZE_MINIMIZED) {
         static int moving = 0;
         if (!moving) {
@@ -282,13 +283,13 @@ LONG GLAPIENTRY __wglMonitor(HWND hwnd,UINT message,UINT wParam,LONG lParam)
               }
             }
           }
-
           /* Do the clipping in the glide library */
           FX_grClipWindow(0,0,FX_grSstScreenWidth(),FX_grSstScreenHeight());
           /* And let the new size set in the context */
           fxMesaUpdateScreenSize(ctx);
         }
       }
+#endif
       break;
     case WM_ACTIVATE:
       if((fxQueryHardware()==GR_SSTTYPE_VOODOO) &&
